@@ -54,6 +54,28 @@ pub struct NewArgs {
     /// railway environment new foo --duplicate bar --service-variable <service name/service uuid> BACKEND_PORT=3000
     #[clap(long = "service-variable", short = 'v', number_of_values = 2, value_names = &["SERVICE", "VARIABLE"])]
     pub service_variables: Vec<String>,
+
+    /// Change the GitHub repo/branch for a service in the newly created environment.
+    ///
+    /// Examples:
+    ///
+    /// railway environment new foo -r backend railwayapp/cli
+    ///
+    /// railway environment new bar -r frontend railwayapp/docs/optional_branch_here
+    ///
+    /// railway environment new bar -r proxy branch_here
+    #[clap(long = "service-repo", short = 'r', number_of_values = 2, value_names = &["SERVICE", "REPO"])]
+    pub source_repo: Vec<String>,
+
+    /// Change the Docker image/tag for a service in the newly created environment.
+    ///
+    /// Examples:
+    ///
+    /// railway environment new foo -i backend rust-lang/rust
+    ///
+    /// railway environment new bar -r frontend rust-lang/rust:alpine
+    #[clap(long = "service-image", short = 'i', number_of_values = 2, value_names = &["SERVICE", "IMAGE"])]
+    pub source_image: Vec<String>,
 }
 
 #[derive(Parser)]
@@ -125,7 +147,7 @@ async fn new_environment(args: NewArgs) -> Result<()> {
         env_id,
         Some(env_name),
     )?;
-
+    configs.write()?;
     Ok(())
 }
 
