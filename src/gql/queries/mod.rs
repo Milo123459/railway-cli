@@ -5,6 +5,7 @@ type DateTime = chrono::DateTime<chrono::Utc>;
 type EnvironmentVariables = std::collections::BTreeMap<String, Option<String>>;
 //type DeploymentMeta = std::collections::BTreeMap<String, serde_json::Value>;
 type DeploymentMeta = serde_json::Value;
+type ServiceInstanceLimit = serde_json::Value;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
@@ -181,3 +182,11 @@ pub struct CustomDomainAvailable;
     response_derives = "Debug, Serialize, Clone"
 )]
 pub struct Regions;
+
+#[derive(GraphQLQuery)]
+#[graphql(
+    schema_path = "src/gql/schema.json",
+    query_path = "src/gql/queries/strings/ServiceInstanceLimits.graphql",
+    response_derives = "Debug, Serialize, Clone"
+)]
+pub struct ServiceInstanceLimits;

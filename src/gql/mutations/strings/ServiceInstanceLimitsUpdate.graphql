@@ -1,0 +1,5 @@
+mutation ServiceInstanceLimitsUpdate($environmentId: String!, $serviceId: String!, $memoryGB: Float, $vCPUs: Float) {
+  serviceInstanceLimitsUpdate(
+    input: {environmentId: $environmentId, serviceId: $serviceId, memoryGB: $memoryGB, vCPUs: $vCPUs}
+  )
+}

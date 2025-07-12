@@ -1,0 +1,7 @@
+query ServiceInstanceLimits($environmentId: String!, $projectId: String!, $serviceId: String!) {
+  serviceInstanceLimits(
+    environmentId: $environmentId
+    projectId: $projectId
+    serviceId: $serviceId
+  )
+}

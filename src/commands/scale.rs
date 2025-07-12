@@ -33,6 +33,14 @@ pub struct Args {
     /// The environment the service is in (defaults to linked environment)
     #[clap(long, short)]
     environment: Option<String>,
+
+    /// The amount of CPUS to allocate to a service (in number of vCPUS)
+    #[clap(long, short)]
+    cpus: Option<i16>,
+
+    /// The amount of memory to allocate to a service (in gigabytes)
+    #[clap(long, short)]
+    memory: Option<String>,
 }
 
 pub async fn command(args: Args) -> Result<()> {
