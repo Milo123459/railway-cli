@@ -21,6 +21,7 @@ mod link;
 mod list;
 mod new;
 mod pull;
+mod test;
 
 structstruck::strike! {
     #[strikethrough[derive(Parser)]]
@@ -130,6 +131,7 @@ pub async fn command(args: Args) -> Result<()> {
         Commands::Delete(args) => delete::delete(environment, project.clone(), args).await,
         Commands::Link(link) => link::link(environment, project.clone(), link).await,
         Commands::Pull(pull) => pull::pull(environment, project.clone(), pull).await,
+        Commands::Test(test) => test::test(environment, project.clone(), test).await,
         _ => unreachable!(),
     }?;
 
