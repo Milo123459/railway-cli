@@ -29,6 +29,7 @@ mod telemetry;
 // Specify the modules you want to include in the commands_enum! macro
 commands!(
     add,
+    agent,
     autoupdate,
     bucket,
     completion,
